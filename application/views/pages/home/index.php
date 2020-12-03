@@ -1,24 +1,39 @@
 <body>
-    <article class="landing">
+    <header class="fixed-top">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <nav class="navigation">
-                        <a href="#home">Home</a>
-                        <a href="#about">About SIFAH</a>
-                        <a href="#lisensi">Lisensi</a>
+                    <nav class="navbar navbar-expand-lg navbar-dark">
+                        <a class="navbar-brand" href="#">SIFAH</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div class="navbar-nav">
+                                <a class="nav-item nav-link" href="#about">About SIFAH</a>
+                                <a class="nav-item nav-link" href="#lisensi">Lisensi</a>
+                            </div>
+                        </div>
                     </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <article id="home" class="landing">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
                     <h1 class="title-landing">SIFAH</h1>
                     <p class="content-landing">Sistem Informasi Apotik Alfah</p>
                     <br /><br />
                     <a href="#about" class="detail">Selengkapnya</a>
-                    <br /><br /><br /><br />
-                    <p class="text-white text-right footer-landing">Jln. Ir. Mashudi Desa Pangulah Utara <br />Kec. Kotabaru Kab. Karawang Jawa Barat</p>
+                    <br /><br /><br /><br /><br /><br />
+                    <p id="about" class="text-white text-right footer-landing">Jln. Ir. Mashudi Desa Pangulah Utara <br />Kec. Kotabaru Kab. Karawang Jawa Barat</p>
                 </div>
             </div>
         </div>
     </article>
-    <article id="about">
+    <article>
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-lg-4 mb-2 mt-4">

@@ -1,0 +1,83 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"); */
+@font-face {
+	font-family: Ubuntu;
+	src: url(http://localhost/sifah/assets/fonts/Ubuntu-Medium.ttf);
+}
+
+html {
+	scroll-behavior: smooth;
+}
+.landing {
+	background-image: url("http://localhost/sifah/assets/img/sifah.jpg");
+	min-height: 100vh;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.title-landing {
+	font-weight: 700;
+	position: relative;
+	top: 200px;
+	color: #28ab99;
+	font-size: 80px;
+	font-family: "Ubuntu", sans-serif;
+}
+.content-landing {
+	color: #8bcbb0;
+	font-weight: 600;
+	font-size: 30px;
+	position: relative;
+	top: 200px;
+	font-family: "Ubuntu", sans-serif;
+}
+.detail {
+	color: white;
+	background-color: #28ab99;
+	padding: 25px 40px;
+	border-radius: 7px;
+	position: relative;
+	top: 200px;
+	font-size: large;
+	font-family: "Ubuntu", sans-serif;
+}
+.detail:hover {
+	text-decoration: none;
+	color: white;
+	background-color: #08463d;
+}
+.footer-landing {
+	position: relative;
+	top: 200px;
+	font-family: "Ubuntu", sans-serif;
+	font-size: 17px;
+}
+.navigation {
+	position: relative;
+	top: 100px;
+}
+.navigation a {
+	color: #28ab99;
+	font-size: 20px;
+	font-family: "Ubuntu", sans-serif;
+	padding-right: 20px;
+}
+.navigation a:hover {
+	color: #08463d;
+	text-decoration: none;
+}
+.about-image {
+	max-width: 100%;
+}
+.title-about {
+	font-weight: bold;
+	font-family: "Ubuntu", sans-serif;
+	color: #28ab99;
+}
+.content-about {
+	font-size: large;
+	color: #28ab99;
+	font-family: "Ubuntu", sans-serif;
+}
+.footer-content {
+	font-family: "Ubuntu", sans-serif;
+}

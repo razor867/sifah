@@ -127,7 +127,12 @@ html {
 .card-header {
 	background-color: #28ab99;
 }
-.back-home:hover {
-	color: #08463d;
-	text-decoration: none;
+.pesan-error {
+	background-color: pink;
+	padding: 10px;
+	width: 100%;
+	border-radius: 7px;
+}
+.alert {
+	display: none;
 }

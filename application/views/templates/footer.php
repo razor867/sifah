@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <p class="footer-content mt-4 text-white">Create by Wahyou98</p>
+                <p class="footer-content mt-4 text-white">Copyright 2020 SIFAH Karawang - Create by Wahyou98</p>
             </div>
         </div>
     </div>

@@ -12,7 +12,7 @@
                             <div class="navbar-nav">
                                 <a class="nav-item nav-link" href="#about">About SIFAH</a>
                                 <a class="nav-item nav-link" href="#lisensi">Lisensi</a>
-                                <a class="nav-item nav-link" href="<?= base_url('home/login') ?>">Login</a>
+                                <a class="nav-item nav-link" href="<?= $linkLogin ?>"><?= $statusLogin ?></a>
                             </div>
                         </div>
                     </nav>

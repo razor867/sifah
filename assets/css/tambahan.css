@@ -121,18 +121,44 @@ html {
 	font-family: "Ubuntu", sans-serif;
 	color: #28ab99;
 }
-.btn-green {
+.btn-green,
+.bg-green {
 	background-color: #28ab99;
 }
 .card-header {
 	background-color: #28ab99;
 }
-.pesan-error {
-	background-color: pink;
-	padding: 10px;
-	width: 100%;
-	border-radius: 7px;
-}
 .alert {
 	display: none;
+}
+.header-menu {
+	padding: 5px 0;
+}
+.header-dashboard {
+	padding: 5px 20px;
+}
+.content-menu {
+	padding: 0;
+	min-height: 100vh;
+	background-color: #e4e4e4;
+}
+.list-menu {
+	padding: 10px 20px;
+	display: block;
+	color: black;
+}
+.list-menu:hover {
+	text-decoration: none;
+	color: white;
+	background-color: #28ab99;
+}
+.icon {
+	background-color: black;
+	padding: 2px 7px;
+	border-radius: 50%;
+}
+.info {
+	border-left: 7px solid #28ab99;
+	width: 200px;
+	margin: 5px;
 }

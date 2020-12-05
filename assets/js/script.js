@@ -49,36 +49,9 @@ $(document).ready(function () {
 		}
 	});
 
-	$("#btnLogin").click(function () {
-		inputDataUser = $("#username").val();
-		inputDataPass = $("#pass").val();
-		if (!inputDataUser || !inputDataPass) {
-			$(".alert").css("display", "block");
-			$(".alert").removeClass("alert-danger");
-			$(".alert").addClass("alert-warning");
-			$(".alert-heading").html("Terjadi kesalahan!");
-			$(".alert-content").html("Username dan Password wajib diisi!");
-		} else {
-			$.ajax({
-				url: "http://localhost/sifah/home/cekLogin",
-				data: {
-					username: inputDataUser,
-					password: inputDataPass,
-				},
-				method: "post",
-				dataType: "json",
-				success: function (data) {
-					// if (data != "berhasil") {
-					// 	$(".alert").css("display", "block");
-					// 	$(".alert").removeClass("alert-warning");
-					// 	$(".alert").addClass("alert-danger");
-					// 	$(".alert-heading").html("Gagal login!");
-					// } else {
-					// 	window.location.replace("http://localhost/sifah/akun/dashboard");
-					// }
-					console.log(data);
-				},
-			});
-		}
-	});
+	if ($(".alert-content").html() != "") {
+		$(".alert").css("display", "block");
+		$(".alert").addClass("alert-danger");
+		$(".alert-heading").html("Gagal login!");
+	}
 });

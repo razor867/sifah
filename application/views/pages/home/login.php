@@ -25,18 +25,18 @@
                                 Silahkan masuk
                             </div>
                             <div class="card-body">
-                                <form method="post" action="">
+                                <form action="<?= base_url('home/cekLogin') ?>" method="post" id="form-login" name="formLogin">
                                     <div class="form-group">
                                         <label for="username" class="fontku">Username</label>
                                         <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username" autocomplete="off">
                                     </div>
                                     <div class="form-group">
-                                        <label for="pass" class="fontku">Password</label>
-                                        <input type="password" class="form-control" id="pass" name="pass" placeholder="Masukkan password" autocomplete="off">
+                                        <label for="password" class="fontku">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" autocomplete="off">
                                     </div>
+                                    <input type="submit" value="Submit" class="btn btn-green fontku text-white">
+                                    <a href="<?= base_url('home') ?>" class="btn btn-dark fontku text-white">Kembali ke Home</a>
                                 </form>
-                                <button id="btnLogin" class="btn btn-green fontku text-white">Login</button>
-                                <a href="<?= base_url('home') ?>" class="btn btn-dark fontku text-white">Kembali ke Home</a>
                             </div>
                         </div>
                         <p class="fontku text-center mt-4 mb-2">Segera hubungi admin apabila anda tidak bisa login!</p>

@@ -11,15 +11,30 @@ class Home extends CI_Controller
 
     public function index()
     {
+        if ($this->session->userdata('status') != 'berhasil') {
+            $statusLogin = 'Login';
+            $linkLogin = base_url('home/login');
+        } else {
+            $statusLogin = 'Akun';
+            $linkLogin = base_url('akun/dashboard');
+        }
+        $data = array(
+            'statusLogin' => $statusLogin,
+            'linkLogin' => $linkLogin
+        );
         $this->load->view('templates/header');
-        $this->load->view('pages/home/index');
+        $this->load->view('pages/home/index', $data);
         $this->load->view('templates/footer');
     }
 
     public function login()
     {
-        $data['infoLogin'] = $this->session->flashdata('infoAksi');
-        $this->load->view('pages/home/login', $data);
+        if ($this->session->userdata('status') != 'berhasil') {
+            $data['infoLogin'] = $this->session->flashdata('infoAksi');
+            $this->load->view('pages/home/login', $data);
+        } else {
+            redirect(base_url('akun/dashboard'));
+        }
     }
 
     public function cekLogin()
@@ -29,7 +44,25 @@ class Home extends CI_Controller
             'username' => $this->cekInput($this->input->post('username'), 'username'),
             'password' => md5($this->cekInput($this->input->post('password'), 'password'))
         );
-        echo json_encode($this->m_login->dataLogin($table, $data)->result());
+        $cek = $this->m_login->dataLogin($table, $data);
+        if ($cek->num_rows() > 0) {
+            foreach ($cek->result() as $dl) {
+                $datalogin = array(
+                    'user' => $dl->username,
+                    'status' => 'berhasil'
+                );
+            }
+            $this->session->set_userdata($datalogin);
+            redirect(base_url('akun/dashboard'));
+        } else {
+            $this->showError('gagal');
+        }
+    }
+
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect(base_url('home/login'));
     }
 
     public function cekInput($data, $catInput)
@@ -40,13 +73,10 @@ class Home extends CI_Controller
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
-        $pattern = '/^[a-zA-Z0-9 ]*$/'; //pattern untuk username (hanya huruf, spasi, dan angka)
+        $pattern = '/^[a-zA-Z0-9 ]*$/';
         $pattern2 = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/';
-        //pattern2 Input Password and Submit [8 to 15 characters 
-        //which contain at least one lowercase letter, one uppercase letter, 
-        //one numeric digit, and one special character]
 
-        if ($catInput == 'user') {
+        if ($catInput == 'username') {
             if (!preg_match($pattern, $data)) {
                 die($this->showError('gagal'));
             }

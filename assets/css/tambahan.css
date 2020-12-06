@@ -162,3 +162,11 @@ html {
 	width: 200px;
 	margin: 5px;
 }
+.col-10 {
+	margin-left: auto;
+}
+.link-active {
+	text-decoration: none;
+	color: white;
+	background-color: #28ab99;
+}

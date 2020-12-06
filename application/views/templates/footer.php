@@ -10,13 +10,6 @@
 <script src="<?= base_url('assets/js/jquery-3.5.1.min.js') ?>"></script>
 <script src="<?= base_url('assets/js/bootstrap.js') ?>"></script>
 <script src="<?= base_url('assets/js/script.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/DataTables/datatables.min.js') ?>"></script>
-
-<script>
-    $(document).ready(function() {
-        $('.dataDisplay').DataTable();
-    });
-</script>
 </body>
 
 </html>

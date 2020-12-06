@@ -62,9 +62,34 @@ $(document).ready(function () {
 				.attr("src", "http://localhost/sifah/assets/img/chevron-white.png");
 		},
 		function () {
-			$(this)
-				.find(".icon-list-menu")
-				.attr("src", "http://localhost/sifah/assets/img/chevron-black.png");
+			//cek hover link active
+			if ($(this).hasClass("link-active")) {
+				$(this)
+					.find(".icon-list-menu")
+					.attr("src", "http://localhost/sifah/assets/img/chevron-white.png");
+			} else {
+				$(this)
+					.find(".icon-list-menu")
+					.attr("src", "http://localhost/sifah/assets/img/chevron-black.png");
+			}
 		}
 	);
+	function showActive() {
+		//membuat link active
+		for (let i = 0; i < $(".list-menu").length; i++) {
+			$(".list-menu").eq(i).removeClass("link-active");
+			if ($(".list-menu").eq(i).text() == $(".hal").html()) {
+				$(".list-menu").eq(i).addClass("link-active");
+				$(".link-active")
+					.find(".icon-list-menu")
+					.attr("src", "http://localhost/sifah/assets/img/chevron-white.png");
+
+				return false; //breaks
+			}
+		}
+	}
+	showActive();
+
+	//ketika list-menu di klik
+	$(".list-menu").click(function () {});
 });

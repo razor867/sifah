@@ -22,13 +22,13 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 content-menu">
-                            <a href="#" class="list-menu fontku"><span class="icon fontku text-white">></span> Dashboard</a>
-                            <a href="#" class="list-menu fontku"><span class="icon fontku text-white">></span> Data Penjualan</a>
-                            <a href="#" class="list-menu fontku"><span class="icon fontku text-white">></span> Data Pembelian</a>
-                            <a href="#" class="list-menu fontku"><span class="icon fontku text-white">></span> Data Obat</a>
-                            <a href="#" class="list-menu fontku"><span class="icon fontku text-white">></span> Data Supplier</a>
-                            <a href="#" class="list-menu fontku"><span class="icon fontku text-white">></span> Data Konsumen</a>
-                            <a href="<?= base_url('home/logout') ?>" class="list-menu fontku"><span class="icon fontku text-white">></span> Logout</a>
+                            <a href="#" class="list-menu fontku"><img class="icon-list-menu" src="<?= base_url('assets/img/chevron-black.png') ?>" alt="chevron"> Dashboard</a>
+                            <a href="#" class="list-menu fontku"><img class="icon-list-menu" src="<?= base_url('assets/img/chevron-black.png') ?>" alt="chevron"> Data Penjualan</a>
+                            <a href="#" class="list-menu fontku"><img class="icon-list-menu" src="<?= base_url('assets/img/chevron-black.png') ?>" alt="chevron"> Data Pembelian</a>
+                            <a href="#" class="list-menu fontku"><img class="icon-list-menu" src="<?= base_url('assets/img/chevron-black.png') ?>" alt="chevron"> Data Obat</a>
+                            <a href="#" class="list-menu fontku"><img class="icon-list-menu" src="<?= base_url('assets/img/chevron-black.png') ?>" alt="chevron"> Data Supplier</a>
+                            <a href="#" class="list-menu fontku"><img class="icon-list-menu" src="<?= base_url('assets/img/chevron-black.png') ?>" alt="chevron"> Data Konsumen</a>
+                            <a href="<?= base_url('home/logout') ?>" class="list-menu fontku"><img class="icon-list-menu" src="<?= base_url('assets/img/chevron-black.png') ?>" alt="chevron"> Logout</a>
                         </div>
                     </div>
                 </div>

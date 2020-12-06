@@ -54,4 +54,17 @@ $(document).ready(function () {
 		$(".alert").addClass("alert-danger");
 		$(".alert-heading").html("Gagal login!");
 	}
+
+	$(".list-menu").hover(
+		function () {
+			$(this)
+				.find(".icon-list-menu")
+				.attr("src", "http://localhost/sifah/assets/img/chevron-white.png");
+		},
+		function () {
+			$(this)
+				.find(".icon-list-menu")
+				.attr("src", "http://localhost/sifah/assets/img/chevron-black.png");
+		}
+	);
 });

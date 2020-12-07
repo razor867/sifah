@@ -90,6 +90,46 @@ $(document).ready(function () {
 	}
 	showActive();
 
-	//ketika list-menu di klik
-	$(".list-menu").click(function () {});
+	//show heading table
+	if ($(".hal").html() != "Data Obat") {
+		$("#show-heading-table").html(function () {
+			var html = "";
+			if ($(".hal").html() == "Data Penjualan") {
+				html +=
+					"<tr><th>Obat</th><th>Tanggal</th><th>Net</th><th>Total Jual</th><th>Konsumen</th><th><a href='#' class='btn btn-dark'>Tambah Data</a></th></tr>";
+			} else if ($(".hal").html() == "Data Pembelian") {
+				html +=
+					"<tr><th>Obat</th><th>Tanggal</th><th>Net</th><th>Total Beli</th><th>Supplier</th><th><a href='#' class='btn btn-dark'>Tambah Data</a></th></tr>";
+			} else if ($(".hal").html() == "Data Konsumen") {
+				html +=
+					"<tr><th>Konsumen</th><th><a href='#' class='btn btn-dark'>Tambah Data</a></th></tr>";
+			} else if ($(".hal").html() == "Data Supplier") {
+				html +=
+					"<tr><th>Supplier</th><th><a href='#' class='btn btn-dark'>Tambah Data</a></th></tr>";
+			}
+			return html;
+		});
+	}
+
+	//show body table
+	if (
+		$(".hal").html() == "Data Penjualan" ||
+		$(".hal").html() == "Data Pembelian"
+	) {
+		$(".show-datatable").eq(5).remove();
+	} else if (
+		$(".hal").html() == "Data Supplier" ||
+		$(".hal").html() == "Data Konsumen"
+	) {
+		//agak tricky nih menampilkannya (membuat range data yg mau di hapus)
+		// $(".show-datatable")
+		// 	.not(".show-datatable:eq(6)")
+		// 	.not(".show-datatable:eq(0)")
+		// 	.remove();
+		//pakai yg atas jg bisa ngandelin bug
+		var $rows = $(".show-datatable");
+		$(
+			".show-datatable:lt(" + $rows.index(6) + "):gt(" + $rows.index(0) + ")"
+		).remove();
+	}
 });

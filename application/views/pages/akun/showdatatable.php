@@ -11,7 +11,7 @@
                             <th>Expired</th>
                             <th>Stok</th>
                             <th>Harga Satuan</th>
-                            <th><a href="#" class="btn btn-dark">Tambah Data</a></th>
+                            <th><a href="#" class="btn btn-dark add" data-toggle="modal" data-target="#showModal"><img src="<?= base_url('assets/img/add.png') ?>" alt="Tambah"> Add</a></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -19,15 +19,15 @@
                         // foreach ($data as $d) {
                         ?>
                         <tr>
-                            <td class="show-datatable">1</td>
-                            <td class="show-datatable">2</td>
-                            <td class="show-datatable">3</td>
-                            <td class="show-datatable">4</td>
-                            <td class="show-datatable">5</td>
-                            <td class="show-datatable">6</td>
+                            <td class="show-datatable"></td>
+                            <td class="show-datatable"></td>
+                            <td class="show-datatable"></td>
+                            <td class="show-datatable"></td>
+                            <td class="show-datatable"></td>
+                            <td class="show-datatable"></td>
                             <td class="show-datatable">
-                                <a href="#" class="btn btn-warning">Edit</a> |
-                                <a href="#" class="btn btn-danger">Hapus</a>
+                                <a href="#" class="btn btn-warning edit" data-toggle="modal" data-target="#showModal"><img src="<?= base_url('assets/img/edit.png') ?>" alt=""></a> |
+                                <a href="#" class="btn btn-danger delete" data-toggle="modal" data-target="#showModal"><img src="<?= base_url('assets/img/delete.png') ?>" alt=""></a>
                             </td>
                         </tr>
                         <?php  ?>

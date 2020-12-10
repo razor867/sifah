@@ -62,4 +62,69 @@ class Akun extends CI_Controller
         $this->load->view('pages/akun/showdatatable');
         $this->load->view('templates/footerakun');
     }
+
+    //CRUD OBAT
+    public function tambahObat()
+    {
+    }
+
+    public function editObat()
+    {
+    }
+
+    public function hapusObat()
+    {
+    }
+
+    //CRUD Penjualan
+    public function tambahPenjualan()
+    {
+    }
+
+    public function editPenjualan()
+    {
+    }
+
+    public function hapusPenjualan()
+    {
+    }
+
+    //CRUD PEMBELIAN
+    public function tambahPembelian()
+    {
+    }
+
+    public function editPembelian()
+    {
+    }
+
+    public function hapusPembelian()
+    {
+    }
+
+    //CRUD SUPPLIER
+    public function tambahSupplier()
+    {
+    }
+
+    public function editSupplier()
+    {
+    }
+
+    public function hapusSupplier()
+    {
+    }
+
+    //CRUD KONSUMEN
+    public function tambahKonsumen()
+    {
+    }
+
+    public function editKonsumen()
+    {
+    }
+
+    public function hapusKonsumen()
+    {
+    }
 }

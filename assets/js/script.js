@@ -90,25 +90,49 @@ $(document).ready(function () {
 	}
 	showActive();
 
-	//show heading table
-	if ($(".hal").html() != "Data Obat") {
-		$("#show-heading-table").html(function () {
-			var html = "";
-			if ($(".hal").html() == "Data Penjualan") {
-				html +=
-					"<tr><th>Obat</th><th>Tanggal</th><th>Net</th><th>Total Jual</th><th>Konsumen</th><th><a href='#' class='btn btn-dark'>Tambah Data</a></th></tr>";
-			} else if ($(".hal").html() == "Data Pembelian") {
-				html +=
-					"<tr><th>Obat</th><th>Tanggal</th><th>Net</th><th>Total Beli</th><th>Supplier</th><th><a href='#' class='btn btn-dark'>Tambah Data</a></th></tr>";
-			} else if ($(".hal").html() == "Data Konsumen") {
-				html +=
-					"<tr><th>Konsumen</th><th><a href='#' class='btn btn-dark'>Tambah Data</a></th></tr>";
-			} else if ($(".hal").html() == "Data Supplier") {
-				html +=
-					"<tr><th>Supplier</th><th><a href='#' class='btn btn-dark'>Tambah Data</a></th></tr>";
-			}
-			return html;
-		});
+	//load heading table dan form
+	if ($(".hal").html() == "Data Penjualan") {
+		//Form core
+		$(".tgl-jualbeli").html("Tanggal Jual");
+		$("#tanggaljualbeli").attr("name", "tanggaljual");
+		$(".total-jualbeli").html("Total Jual");
+		$("#totaljualbeli").attr("name", "totaljual");
+		$(".konsup").html("Konsumen");
+		$("#konsumendansupplier").attr("name", "konsumen");
+		//Heading table
+		$("#show-heading-table").html(
+			"<tr><th>Obat</th><th>Tanggal</th><th>Net</th><th>Total Jual</th><th>Konsumen</th><th><a href='#' class='btn btn-dark add' data-toggle='modal' data-target='#showModal'><img src='http://localhost//sifah/assets/img/add.png' alt='Tambah'> Add</a></th></tr>"
+		);
+	} else if ($(".hal").html() == "Data Pembelian") {
+		//Form core
+		$(".tgl-jualbeli").html("Tanggal Beli");
+		$("#tanggaljualbeli").attr("name", "tanggalbeli");
+		$(".total-jualbeli").html("Total Beli");
+		$("#totaljualbeli").attr("name", "totalbeli");
+		$(".konsup").html("Supplier");
+		$("#konsumendansupplier").attr("name", "supplier");
+		//Heading table
+		$("#show-heading-table").html(
+			"<tr><th>Obat</th><th>Tanggal</th><th>Net</th><th>Total Beli</th><th>Supplier</th><th><a href='#' class='btn btn-dark add' data-toggle='modal' data-target='#showModal'><img src='http://localhost//sifah/assets/img/add.png' alt='Tambah'>  Add</a></th></tr>"
+		);
+	} else if ($(".hal").html() == "Data Supplier") {
+		//Form core
+		$(".supp-men").html("Supplier");
+		$("#suppmen").attr("name", "supplier");
+		$("#suppmen").attr("placeholder", "Nama Supplier");
+		//Heading table
+		$("#show-heading-table").html(
+			"<tr><th>Supplier</th><th><a href='#' class='btn btn-dark add'data-toggle='modal' data-target='#showModal'><img src='http://localhost/sifah/assets/img/add.png' alt='Tambah'> Add</a></th></tr>"
+		);
+	} else if ($(".hal").html() == "Data Konsumen") {
+		//Form core
+		$(".supp-men").html("Konsumen");
+		$("#suppmen").attr("name", "konsumen");
+		$("#suppmen").attr("placeholder", "Nama Konsumen");
+		//Heading table
+		$("#show-heading-table").html(
+			"<tr><th>Konsumen</th><th><a href='#' class='btn btn-dark add' data-toggle='modal' data-target='#showModal'><img src='http://localhost/sifah/assets/img/add.png' alt='Tambah'> Add</a></th></tr>"
+		);
 	}
 
 	//show body table
@@ -132,4 +156,42 @@ $(document).ready(function () {
 			".show-datatable:lt(" + $rows.index(6) + "):gt(" + $rows.index(0) + ")"
 		).remove();
 	}
+
+	//add action
+	$(".add").click(function () {
+		$(".aksi").html("Save");
+		if ($(".hal").html() == "Data Penjualan") {
+			$(".modal-title").html("Tambah Data Penjualan");
+			$(".form-datajualbeli").css("display", "block");
+			$("#form-aksi").attr(
+				"action",
+				"http://localhost/sifah/akun/tambahPenjualan"
+			);
+		} else if ($(".hal").html() == "Data Pembelian") {
+			$(".modal-title").html("Tambah Data Pembelian");
+			$(".form-datajualbeli").css("display", "block");
+			$("#form-aksi").attr(
+				"action",
+				"http://localhost/sifah/akun/tambahPembelian"
+			);
+		} else if ($(".hal").html() == "Data Obat") {
+			$(".modal-title").html("Tambah Data Obat");
+			$(".form-obat").css("display", "block");
+			$("#form-aksi").attr("action", "http://localhost/sifah/akun/tambahObat");
+		} else if ($(".hal").html() == "Data Supplier") {
+			$(".modal-title").html("Tambah Data Supplier");
+			$(".form-suppmen").css("display", "block");
+			$("#form-aksi").attr(
+				"action",
+				"http://localhost/sifah/akun/tambahSupplier"
+			);
+		} else {
+			$(".modal-title").html("Tambah Data Konsumen");
+			$(".form-suppmen").css("display", "block");
+			$("#form-aksi").attr(
+				"action",
+				"http://localhost/sifah/akun/tambahKonsumen"
+			);
+		}
+	});
 });

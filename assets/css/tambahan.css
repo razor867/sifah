@@ -170,3 +170,11 @@ html {
 	color: white;
 	background-color: #28ab99;
 }
+.modal-dialog {
+	max-width: 800px;
+}
+.form-obat,
+.form-datajualbeli,
+.form-suppmen {
+	display: none;
+}

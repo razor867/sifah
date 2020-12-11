@@ -49,10 +49,14 @@ $(document).ready(function () {
 		}
 	});
 
+	//flash info
 	if ($(".alert-content").html() != "") {
 		$(".alert").css("display", "block");
 		$(".alert").addClass("alert-danger");
 		$(".alert-heading").html("Gagal login!");
+		if ($.isNumeric($(".alert").attr("tipe"))) {
+			$(".alert").addClass("alert-success");
+		}
 	}
 
 	$(".list-menu").hover(
@@ -157,9 +161,29 @@ $(document).ready(function () {
 		).remove();
 	}
 
+	function cekID(page) {
+		$.ajax({
+			url: "http://localhost/sifah/akun/cekID",
+			data: {
+				page: page,
+			},
+			method: "post",
+			dataType: "json",
+			success: function (data) {
+				if (page == "Data Penjualan" || page == "Data Pembelian") {
+					$("#iddatajualbeli").val(data);
+				} else {
+					$("#idobat").val(data);
+				}
+				console.log(data);
+			},
+		});
+	}
+
 	//add action
 	$(".add").click(function () {
 		$(".aksi").html("Save");
+		cekID($(".hal").html());
 		if ($(".hal").html() == "Data Penjualan") {
 			$(".modal-title").html("Tambah Data Penjualan");
 			$(".form-datajualbeli").css("display", "block");
@@ -191,6 +215,44 @@ $(document).ready(function () {
 			$("#form-aksi").attr(
 				"action",
 				"http://localhost/sifah/akun/tambahKonsumen"
+			);
+		}
+	});
+
+	//edit action
+	$(".edit").click(function () {
+		$(".aksi").html("Edit");
+		if ($(".hal").html() == "Data Penjualan") {
+			$(".modal-title").html("Edit Data Penjualan");
+			$(".form-datajualbeli").css("display", "block");
+			$("#form-aksi").attr(
+				"action",
+				"http://localhost/sifah/akun/editPenjualan"
+			);
+		} else if ($(".hal").html() == "Data Pembelian") {
+			$(".modal-title").html("Edit Data Pembelian");
+			$(".form-datajualbeli").css("display", "block");
+			$("#form-aksi").attr(
+				"action",
+				"http://localhost/sifah/akun/editPembelian"
+			);
+		} else if ($(".hal").html() == "Data Obat") {
+			$(".modal-title").html("Edit Data Obat");
+			$(".form-obat").css("display", "block");
+			$("#form-aksi").attr("action", "http://localhost/sifah/akun/editObat");
+		} else if ($(".hal").html() == "Data Supplier") {
+			$(".modal-title").html("Edit Data Supplier");
+			$(".form-suppmen").css("display", "block");
+			$("#form-aksi").attr(
+				"action",
+				"http://localhost/sifah/akun/editSupplier"
+			);
+		} else {
+			$(".modal-title").html("Edit Data Konsumen");
+			$(".form-suppmen").css("display", "block");
+			$("#form-aksi").attr(
+				"action",
+				"http://localhost/sifah/akun/editKonsumen"
 			);
 		}
 	});

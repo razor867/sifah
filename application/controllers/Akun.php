@@ -8,6 +8,7 @@ class Akun extends CI_Controller
     {
         parent::__construct();
 
+        $this->load->model('m_data');
         if ($this->session->userdata('status') != 'berhasil') {
             redirect(base_url('home/login'));
         }
@@ -29,30 +30,40 @@ class Akun extends CI_Controller
     public function dataPenjualan()
     {
         $data['link'] = 'Data Penjualan';
+        $data['flash'] = $this->session->flashdata('infoAksi');
+        $data['tipeFlash'] = $this->session->flashdata('tipe');
         $this->showData($data);
     }
 
     public function dataPembelian()
     {
         $data['link'] = 'Data Pembelian';
+        $data['flash'] = $this->session->flashdata('infoAksi');
+        $data['tipeFlash'] = $this->session->flashdata('tipe');
         $this->showData($data);
     }
 
     public function obat()
     {
         $data['link'] = 'Data Obat';
+        $data['flash'] = $this->session->flashdata('infoAksi');
+        $data['tipeFlash'] = $this->session->flashdata('tipe');
         $this->showData($data);
     }
 
     public function supplier()
     {
         $data['link'] = 'Data Supplier';
+        $data['flash'] = $this->session->flashdata('infoAksi');
+        $data['tipeFlash'] = $this->session->flashdata('tipe');
         $this->showData($data);
     }
 
     public function konsumen()
     {
         $data['link'] = 'Data Konsumen';
+        $data['flash'] = $this->session->flashdata('infoAksi');
+        $data['tipeFlash'] = $this->session->flashdata('tipe');
         $this->showData($data);
     }
 
@@ -63,13 +74,43 @@ class Akun extends CI_Controller
         $this->load->view('templates/footerakun');
     }
 
+    public function cekID()
+    {
+        $page = $this->cekInput($this->input->post('page'), 'page', $this->input->post('page'));
+        if ($page == 'Data Penjualan') {
+            $table = 'penjualan';
+        } elseif ($page == 'Data Pembelian') {
+            $table = 'pembelian';
+        } elseif ($page == 'Data Obat') {
+            $table = 'obat';
+        } elseif ($page == 'Data Supplier') {
+            $table = 'supplier';
+        } else {
+            $table = 'konsumen';
+        }
+        echo json_encode($this->m_data->cekIdTable($table));
+    }
+
     //CRUD OBAT
     public function tambahObat()
     {
+        $data = array(
+            'id_obat' => $this->cekInput($this->input->post('idobat'), 'text', 'Data Obat'),
+            'nama_obat' => $this->cekInput($this->input->post('namaobat'), 'text', 'Data Obat'),
+            'jenis_obat' => $this->cekInput($this->input->post('jenis'), 'text', 'Data Obat'),
+            'kegunaan' => $this->cekInput($this->input->post('kegunaan'), 'text', 'Data Obat'),
+            'tgl_kedaluarsa' => $this->cekInput($this->input->post('expired'), 'date', 'Data Obat'),
+            'stok' => $this->cekInput($this->input->post('stok'), 'int', 'Data Obat'),
+            'harga' => $this->cekInput($this->input->post('hargasatuan'), 'int', 'Data Obat')
+        );
+        $table = 'obat';
+        $this->m_data->addData($table, $data);
+        $this->alertInfo(1, 'ditambahkan');
     }
 
     public function editObat()
     {
+        echo 'berhasil';
     }
 
     public function hapusObat()
@@ -79,10 +120,12 @@ class Akun extends CI_Controller
     //CRUD Penjualan
     public function tambahPenjualan()
     {
+        echo 'berhasil';
     }
 
     public function editPenjualan()
     {
+        echo 'berhasil';
     }
 
     public function hapusPenjualan()
@@ -92,10 +135,12 @@ class Akun extends CI_Controller
     //CRUD PEMBELIAN
     public function tambahPembelian()
     {
+        echo 'berhasil';
     }
 
     public function editPembelian()
     {
+        echo 'berhasil';
     }
 
     public function hapusPembelian()
@@ -105,10 +150,12 @@ class Akun extends CI_Controller
     //CRUD SUPPLIER
     public function tambahSupplier()
     {
+        echo 'berhasil';
     }
 
     public function editSupplier()
     {
+        echo 'berhasil';
     }
 
     public function hapusSupplier()
@@ -118,13 +165,74 @@ class Akun extends CI_Controller
     //CRUD KONSUMEN
     public function tambahKonsumen()
     {
+        echo 'berhasil';
     }
 
     public function editKonsumen()
     {
+        echo 'berhasil';
     }
 
     public function hapusKonsumen()
     {
+    }
+
+    public function cekInput($data, $catInput, $page)
+    {
+        if (empty($data)) {
+            die($this->alertInfo('kosong', $page));
+        }
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        $pattern = '/^[a-zA-Z0-9 ]*$/';
+        $pattern2 = '/^[a-zA-Z ]*$/';
+        $pattern3 = '/^[0-9 ]*$/';
+        $pattern4 = '/^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$/'; //for date yyyy-mm-dd
+
+        if ($catInput == 'text') {
+            if (!preg_match($pattern, $data)) {
+                die($this->alertInfo('gagal', $page));
+            }
+        } elseif ($catInput == 'page') {
+            if (!preg_match($pattern2, $data)) {
+                die($this->alertInfo('gagal', $page));
+            }
+        } elseif ($catInput == 'int') {
+            if (!preg_match($pattern3, $data)) {
+                die($this->alertInfo('gagal', $page));
+            }
+        } else {
+            if (!preg_match($pattern4, $data)) {
+                die($this->alertInfo('gagal', $page));
+            }
+        }
+        return $data;
+    }
+
+    public function alertInfo($param, $page, $tipe = '')
+    {
+        if ($page == 'Data Penjualan') {
+            $url = base_url('akun/dataPenjualan');
+        } elseif ($page == 'Data Pembeli') {
+            $url = base_url('akun/dataPembeli');
+        } elseif ($page == 'Data Obat') {
+            $url = base_url('akun/obat');
+        } elseif ($page == 'Data Supplier') {
+            $url = base_url('akun/supplier');
+        } else {
+            $url = base_url('akun/konsumen');
+        }
+
+        if ($param == 'kosong') {
+            $pesan = 'Form tidak boleh kosong!';
+        } elseif ($param == 1) {
+            $pesan = 'Data berhasil ' . $tipe;
+        } else {
+            $pesan = 'Terjadi kesalahan!';
+        }
+        $this->session->set_flashdata('infoAksi', $pesan);
+        $this->session->set_flashdata('tipe', $param);
+        redirect($url);
     }
 }

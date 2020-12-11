@@ -11,7 +11,7 @@
 <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-green fontku text-white">
                 <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -21,7 +21,7 @@
                 <form action="" method="post" id="form-aksi">
                     <div class="form-obat">
                         <div class="form-group">
-                            <input type="text" id="id-obat" name="idobat" hidden>
+                            <input type="text" id="idobat" name="idobat" hidden>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -32,9 +32,9 @@
                                 <label for="jenis">Jenis</label>
                                 <select class="form-control" name="jenis" id="jenis">
                                     <option value="">Jenis Obat</option>
-                                    <option value="cair">Cair</option>
-                                    <option value="tablet">Tablet</option>
-                                    <option value="pil">Pil</option>
+                                    <option value="Cair">Cair</option>
+                                    <option value="Tablet">Tablet</option>
+                                    <option value="Pil">Pil</option>
                                 </select>
                             </div>
                         </div>
@@ -60,10 +60,13 @@
                         </div>
                     </div>
                     <div class="form-datajualbeli">
+                        <div class="form-group">
+                            <input type="text" id="iddatajualbeli" name="iddatajualbeli" hidden>
+                        </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="namaobat">Nama Obat</label>
-                                <input type="text" class="form-control" id="namaobat" name="namaobat" placeholder="Nama Obat">
+                                <label for="namaobatjualbeli">Nama Obat</label>
+                                <input type="text" class="form-control" id="namaobatjualbeli" name="namaobatjualbeli" placeholder="Nama Obat">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="tanggaljualbeli" class="tgl-jualbeli">Tanggal</label>
@@ -96,7 +99,7 @@
                         </div>
                     </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style="background-color: #e4e4e4;">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary aksi"></button>
                 </form>

@@ -21,7 +21,7 @@
                 <form action="" method="post" id="form-aksi">
                     <div class="form-obat">
                         <div class="form-group">
-                            <input type="text" id="idobat" name="idobat" hidden>
+                            <input class="form-control" type="text" id="idobat" name="idobat" hidden>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -97,6 +97,9 @@
                                 <input type="text" class="form-control" id="suppmen" name="" placeholder="">
                             </div>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" id="page" name="page" hidden>
                     </div>
             </div>
             <div class="modal-footer" style="background-color: #e4e4e4;">

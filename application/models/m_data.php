@@ -40,10 +40,6 @@ class M_data extends CI_Model
 
     public function addData($table, $data)
     {
-        if ($this->db->insert($table, $data)) {
-            return 1;
-        } else {
-            return 0;
-        }
+        $this->db->insert($table, $data);
     }
 }

@@ -54,7 +54,8 @@ $(document).ready(function () {
 		$(".alert").css("display", "block");
 		$(".alert").addClass("alert-danger");
 		$(".alert-heading").html("Gagal login!");
-		if ($.isNumeric($(".alert").attr("tipe"))) {
+		if ($(".alert").attr("tipe") == 1) {
+			$(".alert").removeClass("alert-danger");
 			$(".alert").addClass("alert-success");
 		}
 	}
@@ -183,77 +184,47 @@ $(document).ready(function () {
 	//add action
 	$(".add").click(function () {
 		$(".aksi").html("Save");
+		$("#form-aksi").attr("action", "http://localhost/sifah/akun/tambah");
+		$("#page").val($(".hal").html());
 		cekID($(".hal").html());
 		if ($(".hal").html() == "Data Penjualan") {
 			$(".modal-title").html("Tambah Data Penjualan");
 			$(".form-datajualbeli").css("display", "block");
-			$("#form-aksi").attr(
-				"action",
-				"http://localhost/sifah/akun/tambahPenjualan"
-			);
 		} else if ($(".hal").html() == "Data Pembelian") {
 			$(".modal-title").html("Tambah Data Pembelian");
 			$(".form-datajualbeli").css("display", "block");
-			$("#form-aksi").attr(
-				"action",
-				"http://localhost/sifah/akun/tambahPembelian"
-			);
 		} else if ($(".hal").html() == "Data Obat") {
 			$(".modal-title").html("Tambah Data Obat");
 			$(".form-obat").css("display", "block");
-			$("#form-aksi").attr("action", "http://localhost/sifah/akun/tambahObat");
 		} else if ($(".hal").html() == "Data Supplier") {
 			$(".modal-title").html("Tambah Data Supplier");
 			$(".form-suppmen").css("display", "block");
-			$("#form-aksi").attr(
-				"action",
-				"http://localhost/sifah/akun/tambahSupplier"
-			);
 		} else {
 			$(".modal-title").html("Tambah Data Konsumen");
 			$(".form-suppmen").css("display", "block");
-			$("#form-aksi").attr(
-				"action",
-				"http://localhost/sifah/akun/tambahKonsumen"
-			);
 		}
 	});
 
 	//edit action
 	$(".edit").click(function () {
 		$(".aksi").html("Edit");
+		$("#form-aksi").attr("action", "http://localhost/sifah/akun/edit");
+		$("#page").val($(".hal").html());
 		if ($(".hal").html() == "Data Penjualan") {
 			$(".modal-title").html("Edit Data Penjualan");
 			$(".form-datajualbeli").css("display", "block");
-			$("#form-aksi").attr(
-				"action",
-				"http://localhost/sifah/akun/editPenjualan"
-			);
 		} else if ($(".hal").html() == "Data Pembelian") {
 			$(".modal-title").html("Edit Data Pembelian");
 			$(".form-datajualbeli").css("display", "block");
-			$("#form-aksi").attr(
-				"action",
-				"http://localhost/sifah/akun/editPembelian"
-			);
 		} else if ($(".hal").html() == "Data Obat") {
 			$(".modal-title").html("Edit Data Obat");
 			$(".form-obat").css("display", "block");
-			$("#form-aksi").attr("action", "http://localhost/sifah/akun/editObat");
 		} else if ($(".hal").html() == "Data Supplier") {
 			$(".modal-title").html("Edit Data Supplier");
 			$(".form-suppmen").css("display", "block");
-			$("#form-aksi").attr(
-				"action",
-				"http://localhost/sifah/akun/editSupplier"
-			);
 		} else {
 			$(".modal-title").html("Edit Data Konsumen");
 			$(".form-suppmen").css("display", "block");
-			$("#form-aksi").attr(
-				"action",
-				"http://localhost/sifah/akun/editKonsumen"
-			);
 		}
 	});
 });

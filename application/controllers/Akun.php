@@ -91,90 +91,32 @@ class Akun extends CI_Controller
         echo json_encode($this->m_data->cekIdTable($table));
     }
 
-    //CRUD OBAT
-    public function tambahObat()
+    //CRUD
+    public function tambah()
     {
+        $page = $this->cekInput($this->input->post('page'), 'page', 'Data Penjualan'); //page default data penjualan;
         $data = array(
-            'id_obat' => $this->cekInput($this->input->post('idobat'), 'text', 'Data Obat'),
-            'nama_obat' => $this->cekInput($this->input->post('namaobat'), 'text', 'Data Obat'),
-            'jenis_obat' => $this->cekInput($this->input->post('jenis'), 'text', 'Data Obat'),
-            'kegunaan' => $this->cekInput($this->input->post('kegunaan'), 'text', 'Data Obat'),
-            'tgl_kedaluarsa' => $this->cekInput($this->input->post('expired'), 'date', 'Data Obat'),
+            'id_obat' => $this->cekInput($this->input->post('idobat'), 'text', $page),
+            'nama_obat' => $this->cekInput($this->input->post('namaobat'), 'text', $page),
+            'jenis_obat' => $this->cekInput($this->input->post('jenis'), 'text', $page),
+            'kegunaan' => $this->cekInput($this->input->post('kegunaan'), 'text', $page),
+            'tgl_kedaluarsa' => $this->cekInput($this->input->post('expired'), 'date', $page),
             'stok' => $this->cekInput($this->input->post('stok'), 'int', 'Data Obat'),
-            'harga' => $this->cekInput($this->input->post('hargasatuan'), 'int', 'Data Obat')
+            'harga' => $this->cekInput($this->input->post('hargasatuan'), 'int', $page)
         );
         $table = 'obat';
         $this->m_data->addData($table, $data);
-        $this->alertInfo(1, 'ditambahkan');
+        $this->alertInfo(1, $page, 'ditambahkan');
     }
 
-    public function editObat()
+    public function edit()
     {
         echo 'berhasil';
     }
 
-    public function hapusObat()
-    {
-    }
-
-    //CRUD Penjualan
-    public function tambahPenjualan()
+    public function hapus()
     {
         echo 'berhasil';
-    }
-
-    public function editPenjualan()
-    {
-        echo 'berhasil';
-    }
-
-    public function hapusPenjualan()
-    {
-    }
-
-    //CRUD PEMBELIAN
-    public function tambahPembelian()
-    {
-        echo 'berhasil';
-    }
-
-    public function editPembelian()
-    {
-        echo 'berhasil';
-    }
-
-    public function hapusPembelian()
-    {
-    }
-
-    //CRUD SUPPLIER
-    public function tambahSupplier()
-    {
-        echo 'berhasil';
-    }
-
-    public function editSupplier()
-    {
-        echo 'berhasil';
-    }
-
-    public function hapusSupplier()
-    {
-    }
-
-    //CRUD KONSUMEN
-    public function tambahKonsumen()
-    {
-        echo 'berhasil';
-    }
-
-    public function editKonsumen()
-    {
-        echo 'berhasil';
-    }
-
-    public function hapusKonsumen()
-    {
     }
 
     public function cekInput($data, $catInput, $page)
@@ -231,8 +173,11 @@ class Akun extends CI_Controller
         } else {
             $pesan = 'Terjadi kesalahan!';
         }
-        $this->session->set_flashdata('infoAksi', $pesan);
-        $this->session->set_flashdata('tipe', $param);
+        $dataFlash = array(
+            'infoAksi' => $pesan,
+            'tipe' => $param
+        );
+        $this->session->set_flashdata($dataFlash);
         redirect($url);
     }
 }

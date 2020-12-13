@@ -141,26 +141,26 @@ $(document).ready(function () {
 	}
 
 	//show body table
-	if (
-		$(".hal").html() == "Data Penjualan" ||
-		$(".hal").html() == "Data Pembelian"
-	) {
-		$(".show-datatable").eq(5).remove();
-	} else if (
-		$(".hal").html() == "Data Supplier" ||
-		$(".hal").html() == "Data Konsumen"
-	) {
-		//agak tricky nih menampilkannya (membuat range data yg mau di hapus)
-		// $(".show-datatable")
-		// 	.not(".show-datatable:eq(6)")
-		// 	.not(".show-datatable:eq(0)")
-		// 	.remove();
-		//pakai yg atas jg bisa ngandelin bug
-		var $rows = $(".show-datatable");
-		$(
-			".show-datatable:lt(" + $rows.index(6) + "):gt(" + $rows.index(0) + ")"
-		).remove();
-	}
+	// if (
+	// 	$(".hal").html() == "Data Penjualan" ||
+	// 	$(".hal").html() == "Data Pembelian"
+	// ) {
+	// 	$(".show-datatable").eq(5).remove();
+	// } else if (
+	// 	$(".hal").html() == "Data Supplier" ||
+	// 	$(".hal").html() == "Data Konsumen"
+	// ) {
+	// 	//agak tricky nih menampilkannya (membuat range data yg mau di hapus)
+	// 	// $(".show-datatable")
+	// 	// 	.not(".show-datatable:eq(6)")
+	// 	// 	.not(".show-datatable:eq(0)")
+	// 	// 	.remove();
+	// 	//pakai yg atas jg bisa ngandelin bug
+	// 	var $rows = $(".show-datatable");
+	// 	$(
+	// 		".show-datatable:lt(" + $rows.index(6) + "):gt(" + $rows.index(0) + ")"
+	// 	).remove();
+	// }
 
 	function cekID(page) {
 		$.ajax({

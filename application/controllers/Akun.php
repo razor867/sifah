@@ -69,9 +69,22 @@ class Akun extends CI_Controller
 
     public function showData($data)
     {
+        if ($data['link'] == 'Data Penjualan') {
+            $urlTable = 'pages/akun/tablepenjualan';
+        } elseif ($data['link'] == 'Data Pembelian') {
+            $urlTable = 'pages/akun/tablepebelian';
+        } elseif ($data['link'] == 'Data Obat') {
+            $urlTable = 'pages/akun/tableobat';
+        } elseif ($data['link'] == 'Data Supplier') {
+            $urlTable = 'pages/akun/tablesupplier';
+        } else {
+            $urlTable = 'pages/akun/tablekonsumen';
+        }
+
         $data['datafortable'] = $this->m_data->getData($data['link']);
         $this->load->view('templates/headerakun', $data);
         $this->load->view('pages/akun/showdatatable', $data);
+        $this->load->view($urlTable);
         $this->load->view('templates/footerakun');
     }
 
@@ -110,7 +123,15 @@ class Akun extends CI_Controller
             );
             $table = 'obat';
         } elseif ($page == 'Data Supplier') {
+            $data = array(
+                'nama_supplier' => $this->cekInput($this->input->post('supplier'), 'text', $page)
+            );
+            $table = 'supplier';
         } else {
+            $data = array(
+                'nama_konsumen' => $this->cekInput($this->input->post('konsumen'), 'text', $page)
+            );
+            $table = 'konsumen';
         }
         $this->m_data->addData($table, $data);
         $this->alertInfo(1, $page, 'ditambahkan');

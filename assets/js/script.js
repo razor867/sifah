@@ -176,7 +176,6 @@ $(document).ready(function () {
 				} else {
 					$("#idobat").val(data);
 				}
-				console.log(data);
 			},
 		});
 	}

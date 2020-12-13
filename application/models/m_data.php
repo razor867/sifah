@@ -38,6 +38,25 @@ class M_data extends CI_Model
         }
     }
 
+    public function getData($page)
+    {
+        if ($page == 'Data Penjualan') {
+            $this->db->select('');
+            $table = 'penjualan';
+        } elseif ($page == 'Data Pembelian') {
+            $this->db->select('');
+            $table = 'pembelian';
+        } elseif ($page == 'Data Obat') {
+            $table = 'obat';
+        } elseif ($page == 'Data Supplier') {
+            $table = 'supplier';
+        } else {
+            $table = 'konsumen';
+        }
+        $query = $this->db->get($table);
+        return $query->result();
+    }
+
     public function addData($table, $data)
     {
         $this->db->insert($table, $data);

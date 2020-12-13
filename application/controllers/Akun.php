@@ -69,8 +69,9 @@ class Akun extends CI_Controller
 
     public function showData($data)
     {
+        $data['datafortable'] = $this->m_data->getData($data['link']);
         $this->load->view('templates/headerakun', $data);
-        $this->load->view('pages/akun/showdatatable');
+        $this->load->view('pages/akun/showdatatable', $data);
         $this->load->view('templates/footerakun');
     }
 
@@ -95,16 +96,22 @@ class Akun extends CI_Controller
     public function tambah()
     {
         $page = $this->cekInput($this->input->post('page'), 'page', 'Data Penjualan'); //page default data penjualan;
-        $data = array(
-            'id_obat' => $this->cekInput($this->input->post('idobat'), 'text', $page),
-            'nama_obat' => $this->cekInput($this->input->post('namaobat'), 'text', $page),
-            'jenis_obat' => $this->cekInput($this->input->post('jenis'), 'text', $page),
-            'kegunaan' => $this->cekInput($this->input->post('kegunaan'), 'text', $page),
-            'tgl_kedaluarsa' => $this->cekInput($this->input->post('expired'), 'date', $page),
-            'stok' => $this->cekInput($this->input->post('stok'), 'int', 'Data Obat'),
-            'harga' => $this->cekInput($this->input->post('hargasatuan'), 'int', $page)
-        );
-        $table = 'obat';
+        if ($page == 'Data Penjualan') {
+        } elseif ($page == 'Data Pembelian') {
+        } elseif ($page == 'Data Obat') {
+            $data = array(
+                'id_obat' => $this->cekInput($this->input->post('idobat'), 'text', $page),
+                'nama_obat' => $this->cekInput($this->input->post('namaobat'), 'text', $page),
+                'jenis_obat' => $this->cekInput($this->input->post('jenis'), 'text', $page),
+                'kegunaan' => $this->cekInput($this->input->post('kegunaan'), 'text', $page),
+                'tgl_kedaluarsa' => $this->cekInput($this->input->post('expired'), 'date', $page),
+                'stok' => $this->cekInput($this->input->post('stok'), 'int', 'Data Obat'),
+                'harga' => $this->cekInput($this->input->post('hargasatuan'), 'int', $page)
+            );
+            $table = 'obat';
+        } elseif ($page == 'Data Supplier') {
+        } else {
+        }
         $this->m_data->addData($table, $data);
         $this->alertInfo(1, $page, 'ditambahkan');
     }

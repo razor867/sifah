@@ -71,7 +71,7 @@
                                     <?php
                                     foreach ($dataGetNamaObat as $nabat) {
                                     ?>
-                                        <option value="<?= $nabat->id_obat ?>"><?= $nabat->nama_obat ?></option>
+                                        <option class="namaobat-jualbeli" value="<?= $nabat->id_obat ?>"><?= $nabat->nama_obat ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -98,7 +98,7 @@
                                     <?php
                                     foreach ($dataGetKonsup as $konsup) {
                                     ?>
-                                        <option value="
+                                        <option class="kons-dan-sup" value="
                                         <?php
                                         if ($link == 'Data Pembelian') {
                                             echo $konsup->id_supplier;

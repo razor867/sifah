@@ -62,8 +62,12 @@ class M_data extends CI_Model
 
         if ($table == 'penjualan' || $table == 'pembelian') {
             if ($table == 'penjualan') {
+                $this->db->select('id_penjualan, nama_obat, tgl_jual, net, total_jual, nama_konsumen');
+                $this->db->from('penjualan');
+                $this->db->join('obat', 'obat.id_obat = penjualan.id_obat', 'left');
+                $this->db->join('konsumen', 'konsumen.id_konsumen = penjualan.id_konsumen', 'left');
             } else {
-                $this->db->select('nama_obat, tgl_beli, nama_supplier');
+                $this->db->select('id_pembelian, nama_obat, tgl_beli, net, total_beli, nama_supplier');
                 $this->db->from('pembelian');
                 $this->db->join('obat', 'obat.id_obat = pembelian.id_obat', 'left');
                 $this->db->join('supplier', 'supplier.id_supplier = pembelian.id_supplier', 'left');
@@ -100,20 +104,34 @@ class M_data extends CI_Model
     {
         $table = $this->cekTable($page);
 
-        if ($table == 'penjualan') {
-            $data = array('id_penjualan' => $id);
-        } elseif ($table == 'pembelian') {
-            $data = array('id_pembelian' => $id);
-        } elseif ($table == 'obat') {
-            $data = array('id_obat' => $id);
-        } elseif ($table == 'supplier') {
-            $data = array('id_supplier' => $id);
+        if ($table == 'penjualan' || $table == 'pembelian') {
+            if ($table == 'penjualan') {
+                $this->db->select('id_penjualan, nama_obat, tgl_jual, net, total_jual, nama_konsumen');
+                $this->db->from('penjualan');
+                $this->db->join('obat', 'obat.id_obat = penjualan.id_obat', 'left');
+                $this->db->join('konsumen', 'konsumen.id_konsumen = penjualan.id_konsumen', 'left');
+                $this->db->where('id_penjualan', $id);
+            } else {
+                $data = array('id_pembelian' => $id);
+                $this->db->select('id_pembelian, nama_obat, tgl_beli, net, total_beli, nama_supplier');
+                $this->db->from('pembelian');
+                $this->db->join('obat', 'obat.id_obat = pembelian.id_obat', 'left');
+                $this->db->join('supplier', 'supplier.id_supplier = pembelian.id_supplier', 'left');
+                $this->db->where('id_pembelian', $id);
+            }
+            $query = $this->db->get();
+            return $query->result();
         } else {
-            $data = array('id_konsumen' => $id);
+            if ($table == 'obat') {
+                $data = array('id_obat' => $id);
+            } elseif ($table == 'supplier') {
+                $data = array('id_supplier' => $id);
+            } else {
+                $data = array('id_konsumen' => $id);
+            }
+            $query = $this->db->get_where($table, $data);
+            return $query->result();
         }
-
-        $query = $this->db->get_where($table, $data);
-        return $query->result();
     }
 
     public function addData($table, $data)

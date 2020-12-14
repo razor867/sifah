@@ -81,18 +81,13 @@ class Akun extends CI_Controller
             $urlTable = 'pages/akun/tablekonsumen';
         }
 
-        if ($data['link'] == 'Data Penjualan' || $data['link'] == 'Data Pembelian') {
-            var_dump($this->m_data->getData($data['link']));
-        } else {
-            $data['datafortable'] = $this->m_data->getData($data['link']);
-        }
-
+        $data['datafortable'] = $this->m_data->getData($data['link']);
         $data['dataGetNamaObat'] = $this->m_data->getNamaObat('obat');
         $data['dataGetKonsup'] = $this->m_data->getNamaKonsup($data['link']);
-        // $this->load->view('templates/headerakun', $data);
-        // $this->load->view('pages/akun/showdatatable', $data);
-        // $this->load->view($urlTable);
-        // $this->load->view('templates/footerakun', $data);
+        $this->load->view('templates/headerakun', $data);
+        $this->load->view('pages/akun/showdatatable', $data);
+        $this->load->view($urlTable);
+        $this->load->view('templates/footerakun', $data);
     }
 
     public function cekID()
@@ -217,7 +212,7 @@ class Akun extends CI_Controller
         if ($page == 'Data Penjualan') {
             $url = base_url('akun/dataPenjualan');
         } elseif ($page == 'Data Pembelian') {
-            $url = base_url('akun/dataPembeli');
+            $url = base_url('akun/dataPembelian');
         } elseif ($page == 'Data Obat') {
             $url = base_url('akun/obat');
         } elseif ($page == 'Data Supplier') {

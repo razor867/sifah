@@ -143,8 +143,12 @@ $(document).ready(function () {
 	}
 
 	function cleanForm(page) {
-		if (page == "Data Penjualan") {
-		} else if (page == "Data Pembelian") {
+		if (page == "Data Penjualan" || page == "Data Pembelian") {
+			$("#namaobatjualbeli").val("");
+			$("#tanggaljualbeli").val("");
+			$("#net").val("");
+			$("#totaljualbeli").val("");
+			$("#konsumendansupplier").val("");
 		} else if (page == "Data Obat") {
 			$("#namaobat").val("");
 			$("#jenis").val("");
@@ -186,7 +190,21 @@ $(document).ready(function () {
 			dataType: "json",
 			success: function (data) {
 				if (page == "Data Penjualan") {
+					$("#iddatajualbeli").val(data[0].id_penjualan);
+					$("#namaobatjualbeli").val(data[0].nama_obat);
+					$("#.namaobat-jualbeli").html(data[0].nama_obat);
+					$("#tanggaljualbeli").val(data[0].tgl_jual);
+					$("#net").val(data[0].net);
+					$("#totaljualbeli").val(data[0].total_jual);
+					$("#konsumendansupplier").val(data[0].nama_konsumen);
+					$(".kons-dan-sup").html(data[0].nama_konsumen);
 				} else if (page == "Data Pembelian") {
+					$("#iddatajualbeli").val(data[0].id_pembelian);
+					$("#namaobatjualbeli").val(data[0].nama_obat);
+					$("#tanggaljualbeli").val(data[0].tgl_beli);
+					$("#net").val(data[0].net);
+					$("#totaljualbeli").val(data[0].total_beli);
+					$("#konsumendansupplier").val(data[0].nama_supplier);
 				} else if (page == "Data Obat") {
 					$("#namaobat").val(data[0].nama_obat);
 					$("#jenis").val(data[0].jenis_obat);
@@ -199,6 +217,7 @@ $(document).ready(function () {
 				} else {
 					$("#suppmen").val(data[0].nama_konsumen);
 				}
+				console.log(data);
 			},
 		});
 	}

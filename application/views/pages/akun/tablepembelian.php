@@ -1,7 +1,7 @@
 <div>
-    <!-- <?php
-            foreach ($datafortable as $d) {
-            ?>
+    <?php
+    foreach ($datafortable as $d) {
+    ?>
         <tr>
             <td><?= $d->nama_obat ?></td>
             <td><?= $d->tgl_beli ?></td>
@@ -13,7 +13,7 @@
                 <a href="#" dataID="<?= $d->id_pembelian ?>" class="btn btn-danger delete" data-toggle="modal" data-target="#showModal"><img src="<?= base_url('assets/img/delete.png') ?>" alt=""></a>
             </td>
         </tr>
-    <?php } ?> -->
+    <?php } ?>
 </div>
 </tbody>
 </table>

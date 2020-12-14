@@ -66,7 +66,14 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="namaobatjualbeli">Nama Obat</label>
-                                <input type="text" class="form-control" id="namaobatjualbeli" name="namaobatjualbeli" placeholder="Nama Obat">
+                                <select name="namaobatjualbeli" id="namaobatjualbeli" class="form-control">
+                                    <option value="">Pilih Obat</option>
+                                    <?php
+                                    foreach ($dataGetNamaObat as $nabat) {
+                                    ?>
+                                        <option value="<?= $nabat->id_obat ?>"><?= $nabat->nama_obat ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="tanggaljualbeli" class="tgl-jualbeli">Tanggal</label>
@@ -86,7 +93,30 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="konsumendansupplier" class="konsup"></label>
-                                <input type="text" class="form-control" id="konsumendansupplier" name="" placeholder="">
+                                <select name="" id="konsumendansupplier" class="form-control">
+                                    <option class="pilihkonsup" value=""></option>
+                                    <?php
+                                    foreach ($dataGetKonsup as $konsup) {
+                                    ?>
+                                        <option value="
+                                        <?php
+                                        if ($link == 'Data Pembelian') {
+                                            echo $konsup->id_supplier;
+                                        } else {
+                                            echo $konsup->id_konsumen;
+                                        }
+                                        ?>
+                                        ">
+                                            <?php
+                                            if ($link == 'Data Pembelian') {
+                                                echo $konsup->nama_supplier;
+                                            } else {
+                                                echo $konsup->nama_konsumen;
+                                            }
+                                            ?>
+                                        </option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                     </div>

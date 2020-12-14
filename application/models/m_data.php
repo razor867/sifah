@@ -38,7 +38,7 @@ class M_data extends CI_Model
         }
     }
 
-    public function getData($page)
+    public function cekTable($page)
     {
         if ($page == 'Data Penjualan') {
             $this->db->select('');
@@ -53,7 +53,66 @@ class M_data extends CI_Model
         } else {
             $table = 'konsumen';
         }
+        return $table;
+    }
+
+    public function getData($page)
+    {
+        $table = $this->cekTable($page);
+
+        if ($table == 'penjualan' || $table == 'pembelian') {
+            if ($table == 'penjualan') {
+            } else {
+                $this->db->select('nama_obat, tgl_beli, nama_supplier');
+                $this->db->from('pembelian');
+                $this->db->join('obat', 'obat.id_obat = pembelian.id_obat', 'left');
+                $this->db->join('supplier', 'supplier.id_supplier = pembelian.id_supplier', 'left');
+                // $this->db->where('c.album_id', $id);
+                // $this->db->order_by('c.track_title', 'asc');
+            }
+            $query = $this->db->get();
+            return $query->result();
+        } else {
+            $query = $this->db->get($table);
+            return $query->result();
+        }
+    }
+
+    public function getNamaObat($table)
+    {
+        $this->db->select('id_obat, nama_obat');
         $query = $this->db->get($table);
+        return $query->result();
+    }
+
+    public function getNamaKonsup($page)
+    {
+        if ($page == 'Data Pembelian') {
+            $table = 'supplier';
+        } else {
+            $table = 'konsumen';
+        }
+        $query = $this->db->get($table);
+        return $query->result();
+    }
+
+    public function getDataForEdit($page, $id)
+    {
+        $table = $this->cekTable($page);
+
+        if ($table == 'penjualan') {
+            $data = array('id_penjualan' => $id);
+        } elseif ($table == 'pembelian') {
+            $data = array('id_pembelian' => $id);
+        } elseif ($table == 'obat') {
+            $data = array('id_obat' => $id);
+        } elseif ($table == 'supplier') {
+            $data = array('id_supplier' => $id);
+        } else {
+            $data = array('id_konsumen' => $id);
+        }
+
+        $query = $this->db->get_where($table, $data);
         return $query->result();
     }
 

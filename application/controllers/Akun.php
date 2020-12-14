@@ -72,7 +72,7 @@ class Akun extends CI_Controller
         if ($data['link'] == 'Data Penjualan') {
             $urlTable = 'pages/akun/tablepenjualan';
         } elseif ($data['link'] == 'Data Pembelian') {
-            $urlTable = 'pages/akun/tablepebelian';
+            $urlTable = 'pages/akun/tablepembelian';
         } elseif ($data['link'] == 'Data Obat') {
             $urlTable = 'pages/akun/tableobat';
         } elseif ($data['link'] == 'Data Supplier') {
@@ -81,16 +81,23 @@ class Akun extends CI_Controller
             $urlTable = 'pages/akun/tablekonsumen';
         }
 
-        $data['datafortable'] = $this->m_data->getData($data['link']);
-        $this->load->view('templates/headerakun', $data);
-        $this->load->view('pages/akun/showdatatable', $data);
-        $this->load->view($urlTable);
-        $this->load->view('templates/footerakun');
+        if ($data['link'] == 'Data Penjualan' || $data['link'] == 'Data Pembelian') {
+            var_dump($this->m_data->getData($data['link']));
+        } else {
+            $data['datafortable'] = $this->m_data->getData($data['link']);
+        }
+
+        $data['dataGetNamaObat'] = $this->m_data->getNamaObat('obat');
+        $data['dataGetKonsup'] = $this->m_data->getNamaKonsup($data['link']);
+        // $this->load->view('templates/headerakun', $data);
+        // $this->load->view('pages/akun/showdatatable', $data);
+        // $this->load->view($urlTable);
+        // $this->load->view('templates/footerakun', $data);
     }
 
     public function cekID()
     {
-        $page = $this->cekInput($this->input->post('page'), 'page', $this->input->post('page'));
+        $page = $this->cekInput($this->input->post('page'), 'page', 'Data Penjualan'); //Data penjualan alamat redirect default
         if ($page == 'Data Penjualan') {
             $table = 'penjualan';
         } elseif ($page == 'Data Pembelian') {
@@ -105,12 +112,37 @@ class Akun extends CI_Controller
         echo json_encode($this->m_data->cekIdTable($table));
     }
 
+    public function getDataEdit()
+    {
+        $page = $this->cekInput($this->input->post('page'), 'page', 'Data Penjualan');
+        $id = $this->cekInput($this->input->post('id'), 'text', 'Data Penjualan');
+        echo json_encode(($this->m_data->getDataForEdit($page, $id)));
+    }
+
     //CRUD
     public function tambah()
     {
-        $page = $this->cekInput($this->input->post('page'), 'page', 'Data Penjualan'); //page default data penjualan;
+        $page = $this->cekInput($this->input->post('page'), 'page', 'Data Penjualan');
         if ($page == 'Data Penjualan') {
+            $data = array(
+                'id_penjualan' => $this->cekInput($this->input->post('iddatajualbeli'), 'text', $page),
+                'id_obat' => $this->cekInput($this->input->post('namaobatjualbeli'), 'text', $page),
+                'id_konsumen' => $this->cekInput($this->input->post('konsumen'), 'int', $page),
+                'tgl_jual' => $this->cekInput($this->input->post('tanggaljual'), 'date', $page),
+                'net' => $this->cekInput($this->input->post('net'), 'int', $page),
+                'total_jual' => $this->cekInput($this->input->post('totaljual'), 'int', $page)
+            );
+            $table = 'penjualan';
         } elseif ($page == 'Data Pembelian') {
+            $data = array(
+                'id_pembelian' => $this->cekInput($this->input->post('iddatajualbeli'), 'text', $page),
+                'id_supplier' => $this->cekInput($this->input->post('supplier'), 'int', $page),
+                'id_obat' => $this->cekInput($this->input->post('namaobatjualbeli'), 'text', $page),
+                'tgl_beli' => $this->cekInput($this->input->post('tanggalbeli'), 'date', $page),
+                'net' => $this->cekInput($this->input->post('net'), 'int', $page),
+                'total_beli' => $this->cekInput($this->input->post('totalbeli'), 'int', $page)
+            );
+            $table = 'pembelian';
         } elseif ($page == 'Data Obat') {
             $data = array(
                 'id_obat' => $this->cekInput($this->input->post('idobat'), 'text', $page),
@@ -118,7 +150,7 @@ class Akun extends CI_Controller
                 'jenis_obat' => $this->cekInput($this->input->post('jenis'), 'text', $page),
                 'kegunaan' => $this->cekInput($this->input->post('kegunaan'), 'text', $page),
                 'tgl_kedaluarsa' => $this->cekInput($this->input->post('expired'), 'date', $page),
-                'stok' => $this->cekInput($this->input->post('stok'), 'int', 'Data Obat'),
+                'stok' => $this->cekInput($this->input->post('stok'), 'int', $page),
                 'harga' => $this->cekInput($this->input->post('hargasatuan'), 'int', $page)
             );
             $table = 'obat';
@@ -184,7 +216,7 @@ class Akun extends CI_Controller
     {
         if ($page == 'Data Penjualan') {
             $url = base_url('akun/dataPenjualan');
-        } elseif ($page == 'Data Pembeli') {
+        } elseif ($page == 'Data Pembelian') {
             $url = base_url('akun/dataPembeli');
         } elseif ($page == 'Data Obat') {
             $url = base_url('akun/obat');
